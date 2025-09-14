@@ -31,8 +31,6 @@ test('Launch Application', async ({page}) => {
 
     console.log(`Number of products : ${allProducts.length}`);
 
-    console.log(await cardTitles.size());
-
 
 
     await page.pause();

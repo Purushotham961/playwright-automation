@@ -15,15 +15,16 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  timeout: 40 * 1000,
+  timeout: 10 * 1000,
   reporter: 'html',
   expect: {
     timeout: 5000
   },
   use: {
-    browserName: 'webkit',
+    browserName: 'chromium',
     headless: false,
-    screenshot: 'on'
+    screenshot: 'on',
+    trace: 'retain-on-failure'
   }
 });
 
