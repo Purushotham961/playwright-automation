@@ -16,6 +16,8 @@ test('Special functions', async ({page}) => {
 
     await page.locator("app-card").filter({hasText: 'Blackberry'}).getByRole("button", {name: 'Add'}).click();
 
+    expect(page.locator("purushotham")).toHaveCount(1);
+
 
 
     await page.pause();

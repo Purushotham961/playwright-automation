@@ -21,7 +21,7 @@ export default defineConfig({
     timeout: 5000
   },
   use: {
-    browserName: 'webkit',
+    browserName: 'chromium',
     headless: false,
     screenshot: 'on',
     trace: 'retain-on-failure'
