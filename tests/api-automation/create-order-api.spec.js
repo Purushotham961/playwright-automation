@@ -29,7 +29,8 @@ test.beforeEach(async () => {
     const create_order_response = await api_context.post('https://rahulshettyacademy.com/api/ecom/order/create-order', {
         data: { orders: [{ country: "India", productOrderedId: "68a961959320a140fe1ca57e" }] },
         headers: {
-            authorization : token
+            "Authorization" : token,
+            "Content-Type" : 'application/json',
         }
     });
 
@@ -53,13 +54,17 @@ test('Login', async ({ page }) => {
         }, token
     );
 
-    await page.goto("https://rahulshettyacademy.com/client");
+    await page.goto("https://rahulshettyacademy.com/client/#/dashboard/myorders");
 
-    const product_titles = page.locator('[class="card-body"] h5');
-    const first_product = await product_titles.first().textContent();
-    console.log(`first product : ${first_product}`);
+    const order_ids = await page.locator("tbody tr th").all();
 
-    const all_product_titles = await product_titles.allTextContents();
-    console.log(`products : ${all_product_titles}`);
+    for(const temp_order_id of order_ids){
+        const actual_order_id = await temp_order_id.textContent();
+        console.log(`actual order id : ${actual_order_id}`);
 
+        if(actual_order_id.trim() === order_id){
+            console.log(`order id ${actual_order_id} is displayed in orders history`);
+            break;
+        }
+    }
 });
